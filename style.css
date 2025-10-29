@@ -1,0 +1,38 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-size: 62.5%;
+  /*10px*/
+}
+
+
+body {
+  font-family: varela;
+}
+
+@font-face {
+  font-family: "varela";
+  src: url("./assets/varela-round.ttf");
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style-type: none;
+}
+
+button,
+input {
+  font-family: varela;
+  background: none;
+  border: none;
+  outline: none;
+}
+
+button {
+  cursor: pointer;
+}
