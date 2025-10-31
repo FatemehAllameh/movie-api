@@ -250,8 +250,30 @@ button {
   color: #b6b7b8;
 }
 
+/* 
+===========
+  Footer
+==========
+*/
 .footer {
+  text-align: center;
+  background: var(--bg);
 }
 
 .footer-text {
+  font-size: 1.5rem;
+  color: var(--text);
+  padding-top: 8rem;
+  padding-bottom: 1rem;
+}
+
+.footer-text a {
+  display: inline-block;
+  transition: all 0.3s ease;
+  font-size: 1.5rem;
+  color: #c8d7eb;
+}
+
+.footer-text a:hover {
+  transform: scale(1.02);
 }
