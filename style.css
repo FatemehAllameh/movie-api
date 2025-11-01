@@ -15,6 +15,7 @@
 
 body {
   font-family: varela;
+  background: var(--bg);
 }
 
 @font-face {
@@ -229,15 +230,15 @@ button {
   align-items: center;
   justify-content: center;
   color: var(--text);
-  font-size: 2rem;
+  font-size: 2.5rem;
   gap: 2rem;
 }
 
 .current-page {
   border: #ffcc00 solid 1.5px;
   border-radius: 50%;
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 3rem;
+  height: 3rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -258,12 +259,13 @@ button {
 .footer {
   text-align: center;
   background: var(--bg);
+  padding-top: 8rem;
 }
 
 .footer-text {
   font-size: 1.5rem;
   color: var(--text);
-  padding-top: 8rem;
+
   padding-bottom: 1rem;
 }
 
@@ -276,4 +278,83 @@ button {
 
 .footer-text a:hover {
   transform: scale(1.02);
+}
+
+/* 
+==============
+  Responsive
+==============
+*/
+
+@media (min-width: 480px) {
+  .header {
+    padding: 1.5rem 1rem;
+    gap: 1.5rem;
+  }
+  .header-title {
+    font-size: 3.5rem;
+  }
+  .search-form {
+    height: 3.5rem;
+    width: 80%;
+    padding-inline: 1rem 1.5rem;
+  }
+  .search-input {
+    font-size: 2rem;
+  }
+  .movies-list {
+    gap: 2rem;
+  }
+  .movie-item {
+    width: 80%;
+  }
+  .pagination-box {
+    font-size: 2.8rem;
+  }
+  .footer-text {
+    font-size: 2rem;
+  }
+  .footer-text a {
+    font-size: 2rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .search-form {
+    width: 50%;
+  }
+  .movies-list {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .movie-item {
+    width: 45%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .header {
+    flex-direction: row;
+    justify-content: space-between;
+    padding-inline: 5rem 5rem;
+  }
+  .movie-item {
+    width: 30%;
+  }
+  .search-form {
+    height: 4rem;
+    width: 40%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .search-form {
+    height: 4rem;
+    width: 30%;
+  }
+  .movie-item {
+    width: 23%;
+    padding: 0.5rem;
+    padding-bottom: 1rem;
+  }
 }
