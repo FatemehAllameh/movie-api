@@ -109,15 +109,41 @@ button {
 }
 
 .loading-box {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1rem;
 }
 
 .card {
+  background: #050421;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+.card-content {
+  padding: 2rem;
+}
+
+@keyframes shine {
+  to {
+    background-position-x: -200%;
+  }
+}
+.card-img,
+.card-title {
+  background: linear-gradient(110deg, #213243 8%, #24384a 18%, #213243 33%);
+  border-radius: 5px;
+  background-size: 200% 100%;
+  animation: 1s shine linear infinite;
+}
 .card-img {
+  height: 24rem;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
 }
 
 .card-title {
+  height: 3rem;
 }
 
 .error-text {
