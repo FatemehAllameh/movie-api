@@ -104,7 +104,7 @@ button {
 
 .condition-box {
   color: var(--text);
-  font-size: 3rem;
+  font-size: 5rem;
   text-align: center;
 }
 
@@ -182,7 +182,6 @@ button {
 }
 .movie-poster {
   width: 100%;
-  /* height: 30rem; */
   object-fit: cover;
   border-radius: 12px;
 }
