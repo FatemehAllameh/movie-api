@@ -207,6 +207,7 @@ button {
 .overview-text {
   font-size: 1.5rem;
   text-align: center;
+  margin-top: 2rem;
   color: #c8d7eb;
 }
 
@@ -238,10 +239,6 @@ button {
 .green-vote {
   background: rgb(73, 185, 21);
   color: #fff;
-}
-
-.orange-vote {
-  background: rgb(255, 157, 0);
 }
 
 .red-vote {

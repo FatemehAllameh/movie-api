@@ -13,7 +13,6 @@ const getMovies = async () => {
   try {
     const response = await fetch(API_URL);
     const data = await response.json();
-    console.log(data);
     loadingBox.style.display = "none";
     errorText.textContent = "";
     paginationBox.style.display = "flex";
@@ -30,7 +29,7 @@ const showMovies = (movies) => {
   moviesList.innerHTML = "";
   if (movies.length !== 0) {
     movies.forEach((movie) => {
-      const { overview, popularity, poster_path, title } = movie;
+      const { overview, vote_average, poster_path, title } = movie;
       const movieItem = `
       <div class="movie-item">
             <div class="poster-wrapper">
@@ -48,17 +47,24 @@ const showMovies = (movies) => {
           </div>
           <div class="info-box">
             <h4 class="movie-name">${title}</h4>
-            <span class="movie-vote">
-              ${popularity}
+            <span class="movie-vote ${getClassByVote(vote_average)}">
+              ${vote_average}
               <i class="fa fa-star"></i>
             </span>
           </div>
             </div>`;
-      console.log(movieItem);
       moviesList.innerHTML += movieItem;
     });
   }
 };
 
+// Set BackGround Color According To The Movie Rating
+const getClassByVote = (vote) => {
+  if (vote >= 8) {
+    return "green-vote";
+  } else if (vote <= 5) {
+    return "red-vote";
+  }
+};
 // Initial call
 getMovies();
