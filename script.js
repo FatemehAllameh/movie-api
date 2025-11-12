@@ -3,15 +3,18 @@ const loadingBox = document.querySelector(".loading-box");
 const moviesList = document.querySelector(".movies-list");
 const errorText = document.querySelector(".error-text");
 const paginationBox = document.querySelector(".pagination-box");
+const searchForm = document.querySelector(".search-form");
+const searchInput = document.querySelector(".search-input");
 // API DATA
 const API_KEY = "6d154eadcf12bb20312a85cea59b903f";
 const API_URL = `https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=${API_KEY}`;
 const IMAGE_PATH = "https://image.tmdb.org/t/p/w500";
+const SEARCH_API = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=`;
 
 // Get Movies From API
-const getMovies = async () => {
+const getMovies = async (url) => {
   try {
-    const response = await fetch(API_URL);
+    const response = await fetch(url);
     const data = await response.json();
     loadingBox.style.display = "none";
     errorText.textContent = "";
@@ -66,5 +69,15 @@ const getClassByVote = (vote) => {
     return "red-vote";
   }
 };
+
+// Display Movies Based On Search Input
+searchForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const searchedValue = searchInput.value;
+  if (searchedValue) {
+    getMovies(SEARCH_API + searchedValue);
+  }
+});
+
 // Initial call
-getMovies();
+getMovies(API_URL);
