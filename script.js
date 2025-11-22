@@ -29,9 +29,11 @@ const getMovies = async (url) => {
 
 // Show Movies In DOM
 const showMovies = (movies) => {
+  const filteredMovies = movies.filter((movie) => movie.poster_path !== null);
   moviesList.innerHTML = "";
-  if (movies.length !== 0) {
-    movies.forEach((movie) => {
+  if (filteredMovies.length !== 0) {
+    filteredMovies.forEach((movie) => {
+      console.log(movie);
       const { overview, vote_average, poster_path, title } = movie;
       const movieItem = `
       <div class="movie-item">
