@@ -6,6 +6,8 @@ const warningText = document.querySelector(".warning-text");
 const paginationBox = document.querySelector(".pagination-box");
 const searchForm = document.querySelector(".search-form");
 const searchInput = document.querySelector(".search-input");
+const headerTitle = document.querySelector(".header-title");
+
 // API DATA
 const API_KEY = "6d154eadcf12bb20312a85cea59b903f";
 const API_URL = `https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=${API_KEY}`;
@@ -77,6 +79,9 @@ const getClassByVote = (vote) => {
     return "red-vote";
   }
 };
+
+// Reset Page By Clicking Header Title
+headerTitle.addEventListener("click", () => getMovies(API_URL));
 
 // Display Movies Based On Search Input
 searchForm.addEventListener("submit", (e) => {
