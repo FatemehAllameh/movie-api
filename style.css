@@ -153,20 +153,19 @@ button {
 }
 
 .movies-list {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
   gap: 1rem;
 }
 
 .movie-item {
+  margin: auto;
   background: var(--card-bg);
   color: var(--text);
   border-radius: 12px;
   padding: 1rem;
-  width: 90%;
-  height: 40rem;
+  width: 30rem;
+  min-height: 35rem;
   position: relative;
   display: flex;
   align-items: center;
@@ -310,6 +309,7 @@ button {
 ==============
 */
 
+/* ====== 480px ====== */
 @media (min-width: 480px) {
   .header {
     padding: 1.5rem 1rem;
@@ -327,10 +327,11 @@ button {
     font-size: 2rem;
   }
   .movies-list {
-    gap: 2rem;
+    grid-template-columns: repeat(2, 1fr);
   }
   .movie-item {
-    width: 80%;
+    width: 22rem;
+    max-height: 30rem;
   }
   .pagination-box {
     font-size: 2.8rem;
@@ -343,27 +344,49 @@ button {
   }
 }
 
+/* ====== 576px ====== */
+@media (min-width: 576px) {
+  .movie-item {
+    width: 25rem;
+  }
+}
+
+/* ====== 768px ====== */
 @media (min-width: 768px) {
   .search-form {
     width: 50%;
   }
   .movies-list {
-    flex-direction: row;
-    flex-wrap: wrap;
+    grid-template-columns: repeat(2, 1fr);
   }
   .movie-item {
-    width: 45%;
+    max-height: 35rem;
+    width: 30rem;
   }
 }
 
+/* ====== 912px ====== */
+@media (min-width: 912px) {
+  .movies-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .movie-item {
+    width: 28rem;
+  }
+}
+
+/* ====== 1024px ====== */
 @media (min-width: 1024px) {
   .header {
     flex-direction: row;
     justify-content: space-between;
     padding-inline: 5rem 5rem;
   }
+  .movies-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
   .movie-item {
-    width: 30%;
+    min-width: 30rem;
   }
   .search-form {
     height: 4rem;
@@ -371,14 +394,26 @@ button {
   }
 }
 
+/* ====== 1200px ====== */
 @media (min-width: 1200px) {
   .search-form {
     height: 4rem;
     width: 30%;
   }
+  .movies-list {
+    grid-template-columns: repeat(4, 1fr);
+  }
   .movie-item {
-    width: 23%;
-    padding: 0.5rem;
+    min-width: 0;
+    max-width: 30rem;
+    padding: 0.6rem;
     padding-bottom: 1rem;
+  }
+}
+
+/* ====== 1440px ====== */
+@media (min-width: 1440px) {
+  .movie-item {
+    min-width: 33rem;
   }
 }
