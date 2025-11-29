@@ -88,7 +88,11 @@ searchForm.addEventListener("submit", (e) => {
   e.preventDefault();
   const searchedValue = searchInput.value;
   if (searchedValue) {
+    // Active Loading mode
+    loadingBox.style.display = "grid";
+    moviesList.innerHTML = "";
     getMovies(SEARCH_API + searchedValue);
+    searchInput.value = "";
   }
 });
 
