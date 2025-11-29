@@ -89,7 +89,7 @@ searchForm.addEventListener("submit", (e) => {
   const searchedValue = searchInput.value;
   if (searchedValue) {
     // Active Loading mode
-    loadingBox.style.display = "grid";
+    loadingBox.style.display = "flex";
     moviesList.innerHTML = "";
     getMovies(SEARCH_API + searchedValue);
     searchInput.value = "";

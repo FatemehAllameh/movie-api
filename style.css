@@ -110,12 +110,15 @@ button {
 }
 
 .loading-box {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   gap: 1rem;
 }
 
 .card {
+  width: 80%;
   background: #050421;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -327,6 +330,13 @@ button {
   .search-input {
     font-size: 2rem;
   }
+  .loading-box {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .card {
+    width: 45%;
+  }
   .movies-list {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -368,6 +378,9 @@ button {
 
 /* ====== 912px ====== */
 @media (min-width: 912px) {
+  .card {
+    width: 30%;
+  }
   .movies-list {
     grid-template-columns: repeat(3, 1fr);
   }
@@ -400,6 +413,9 @@ button {
   .search-form {
     height: 4rem;
     width: 30%;
+  }
+  .card {
+    width: 24%;
   }
   .movies-list {
     grid-template-columns: repeat(4, 1fr);
