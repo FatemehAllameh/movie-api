@@ -2,6 +2,7 @@
 const loadingBox = document.querySelector(".loading-box");
 const moviesList = document.querySelector(".movies-list");
 const errorText = document.querySelector(".error-text");
+const warningText = document.querySelector(".warning-text");
 const paginationBox = document.querySelector(".pagination-box");
 const searchForm = document.querySelector(".search-form");
 const searchInput = document.querySelector(".search-input");
@@ -32,6 +33,8 @@ const showMovies = (movies) => {
   const filteredMovies = movies.filter((movie) => movie.poster_path !== null);
   moviesList.innerHTML = "";
   if (filteredMovies.length !== 0) {
+    warningText.innerHTML = "";
+    paginationBox.style.display = "flex";
     filteredMovies.forEach((movie) => {
       console.log(movie);
       const { overview, vote_average, poster_path, title } = movie;
@@ -60,6 +63,9 @@ const showMovies = (movies) => {
             </div>`;
       moviesList.innerHTML += movieItem;
     });
+  } else {
+    warningText.innerHTML = "NO Result Found!";
+    paginationBox.style.display = "none";
   }
 };
 
