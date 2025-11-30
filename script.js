@@ -32,13 +32,16 @@ const getMovies = async (url) => {
 
 // Show Movies In DOM
 const showMovies = (movies) => {
+  // Remove Movies With No Poster
   const filteredMovies = movies.filter((movie) => movie.poster_path !== null);
+  // Clear The Previous Movie List
   moviesList.innerHTML = "";
   if (filteredMovies.length !== 0) {
+    // Clear Warning Text And Show Pagination
     warningText.innerHTML = "";
     paginationBox.style.display = "flex";
     filteredMovies.forEach((movie) => {
-      console.log(movie);
+      // Destructure Needed Movie Data
       const { overview, vote_average, poster_path, title } = movie;
       const movieItem = `
       <div class="movie-item">
@@ -66,6 +69,7 @@ const showMovies = (movies) => {
       moviesList.innerHTML += movieItem;
     });
   } else {
+    // Show Warning and Hide Pagination If No Movie Found
     warningText.innerHTML = "NO Result Found!";
     paginationBox.style.display = "none";
   }
