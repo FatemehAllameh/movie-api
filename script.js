@@ -7,6 +7,10 @@ const paginationBox = document.querySelector(".pagination-box");
 const searchForm = document.querySelector(".search-form");
 const searchInput = document.querySelector(".search-input");
 const headerTitle = document.querySelector(".header-title");
+const nextPageButton = document.querySelector("#next-page-btn");
+
+let currentPage = 1;
+let totalPages = null;
 
 // API DATA
 const API_KEY = "6d154eadcf12bb20312a85cea59b903f";
@@ -22,6 +26,7 @@ const getMovies = async (url) => {
     loadingBox.style.display = "none";
     errorText.textContent = "";
     paginationBox.style.display = "flex";
+    totalPages = data.total_pages;
     showMovies(data.results);
   } catch (err) {
     errorText.textContent = err.message;
@@ -99,6 +104,27 @@ searchForm.addEventListener("submit", (e) => {
     searchInput.value = "";
   }
 });
+
+// Go To Next Page
+nextPageButton.addEventListener("click", () => {
+  currentPage++;
+  if (currentPage <= totalPages) {
+    callPage(currentPage);
+  }
+});
+
+// UPdate The "page" Param In The API URL And Fetch New Results
+const callPage = (page) => {
+  const splitedURL = API_URL.split("?");
+  console.log(splitedURL);
+  const searchParams = new URLSearchParams(splitedURL[1]);
+  searchParams.set("page", page);
+  const url = splitedURL[0] + "?" + searchParams;
+  // Scroll To Top
+  window.scrollTo({ top: 0, behavior: "smooth" });
+  // Fetch Movies For This Page
+  getMovies(url);
+};
 
 // Initial call
 getMovies(API_URL);
