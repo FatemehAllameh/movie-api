@@ -9,9 +9,11 @@ const searchInput = document.querySelector(".search-input");
 const headerTitle = document.querySelector(".header-title");
 const nextPageButton = document.querySelector("#next-page-btn");
 const prevPageBotton = document.querySelector("#prev-page-btn");
+const currentPageText = document.querySelector(".current-page");
 
 let currentPage = 1;
 let totalPages = null;
+let lastURL = null;
 
 // API DATA
 const API_KEY = "6d154eadcf12bb20312a85cea59b903f";
@@ -21,6 +23,7 @@ const SEARCH_API = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}
 
 // Get Movies From API
 const getMovies = async (url) => {
+  lastURL = url;
   try {
     const response = await fetch(url);
     const data = await response.json();
@@ -28,6 +31,7 @@ const getMovies = async (url) => {
     errorText.textContent = "";
     paginationBox.style.display = "flex";
     totalPages = data.total_pages;
+    currentPageText.innerHTML = currentPage;
     showMovies(data.results);
   } catch (err) {
     errorText.textContent = err.message;
@@ -124,11 +128,14 @@ prevPageBotton.addEventListener("click", () => {
 
 // UPdate The "page" Param In The API URL And Fetch New Results
 const callPage = (page) => {
-  const splitedURL = API_URL.split("?");
+  const splitedURL = lastURL.split("?");
   console.log(splitedURL);
   const searchParams = new URLSearchParams(splitedURL[1]);
   searchParams.set("page", page);
   const url = splitedURL[0] + "?" + searchParams;
+  // Active Loading mode
+  loadingBox.style.display = "flex";
+  moviesList.innerHTML = "";
   // Scroll To Top
   window.scrollTo({ top: 0, behavior: "smooth" });
   // Fetch Movies For This Page
