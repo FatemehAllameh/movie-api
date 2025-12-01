@@ -8,6 +8,7 @@ const searchForm = document.querySelector(".search-form");
 const searchInput = document.querySelector(".search-input");
 const headerTitle = document.querySelector(".header-title");
 const nextPageButton = document.querySelector("#next-page-btn");
+const prevPageBotton = document.querySelector("#prev-page-btn");
 
 let currentPage = 1;
 let totalPages = null;
@@ -109,6 +110,14 @@ searchForm.addEventListener("submit", (e) => {
 nextPageButton.addEventListener("click", () => {
   currentPage++;
   if (currentPage <= totalPages) {
+    callPage(currentPage);
+  }
+});
+
+// Go To Previous Page
+prevPageBotton.addEventListener("click", () => {
+  currentPage--;
+  if (currentPage >= 1) {
     callPage(currentPage);
   }
 });
