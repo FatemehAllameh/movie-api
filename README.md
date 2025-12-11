@@ -4,6 +4,7 @@ A simple web application for searching movies using an external Movie API.
 
 > Note: Users accessing from Iran need to have their VPN enabled to fetch data properly.
 
+You can try the project online [here](https://movie-api-jet-five.vercel.app/)
 
 ## Features
 
@@ -34,5 +35,7 @@ Follow these steps to run the project locally:
 3. Use the Movie App  
    - Search for a movie using the input field.  
    - Navigate through search results using pagination buttons.  
+
+Or, you can try the project online [here](https://movie-api-jet-five.vercel.app/)
 
 Made with :heartpulse: by [Fatemeh Allameh](https://github.com/FatemehAllameh)
