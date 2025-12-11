@@ -34,6 +34,8 @@ const getMovies = async (url) => {
     errorText.textContent = "";
     paginationBox.style.display = "flex";
 
+    // update pagination data
+    currentPage = data.page;
     totalPages = data.total_pages;
     currentPageText.innerHTML = currentPage;
 
@@ -116,13 +118,11 @@ const getClassByVote = (vote) => {
 // Reset Page By Clicking Header Title
 headerTitle.addEventListener("click", () => {
   getMovies(API_URL);
-  currentPage = 1;
 });
 
 // Display Movies Based On Search Input
 searchForm.addEventListener("submit", (e) => {
   e.preventDefault();
-  currentPage = 1;
   const searchedValue = searchInput.value;
   if (searchedValue) {
     // Active Loading mode
@@ -136,7 +136,6 @@ searchForm.addEventListener("submit", (e) => {
 // Go To Next Page
 nextPageButton.addEventListener("click", () => {
   nextPage = currentPage + 1;
-  currentPage++;
   if (nextPage <= totalPages) {
     callPage(nextPage);
   }
@@ -144,10 +143,7 @@ nextPageButton.addEventListener("click", () => {
 
 // Go To Previous Page
 prevPageBotton.addEventListener("click", () => {
-  if (currentPage > 1) {
-    prevPage = currentPage - 1;
-    currentPage--;
-  }
+  prevPage = currentPage - 1;
   if (prevPage >= 1) {
     callPage(prevPage);
   }
