@@ -12,8 +12,10 @@ const prevPageBotton = document.querySelector("#prev-page-btn");
 const currentPageText = document.querySelector(".current-page");
 
 let currentPage = 1;
+let nextPage = null;
+let prevPage = null;
 let totalPages = null;
-let lastURL = null;
+let lastURL = "";
 
 // API DATA
 const API_KEY = "6d154eadcf12bb20312a85cea59b903f";
@@ -27,11 +29,28 @@ const getMovies = async (url) => {
   try {
     const response = await fetch(url);
     const data = await response.json();
+
     loadingBox.style.display = "none";
     errorText.textContent = "";
     paginationBox.style.display = "flex";
+
     totalPages = data.total_pages;
     currentPageText.innerHTML = currentPage;
+
+    if (totalPages == 1) {
+      prevPageBotton.classList.add("disable-btn");
+      nextPageButton.classList.add("disable-btn");
+    } else if (currentPage >= totalPages) {
+      prevPageBotton.classList.remove("disable-btn");
+      nextPageButton.classList.add("disable-btn");
+    } else if (currentPage <= 1) {
+      prevPageBotton.classList.add("disable-btn");
+      nextPageButton.classList.remove("disable-btn");
+    } else {
+      prevPageBotton.classList.remove("disable-btn");
+      nextPageButton.classList.remove("disable-btn");
+    }
+
     showMovies(data.results);
   } catch (err) {
     errorText.textContent = err.message;
@@ -95,11 +114,15 @@ const getClassByVote = (vote) => {
 };
 
 // Reset Page By Clicking Header Title
-headerTitle.addEventListener("click", () => getMovies(API_URL));
+headerTitle.addEventListener("click", () => {
+  getMovies(API_URL);
+  currentPage = 1;
+});
 
 // Display Movies Based On Search Input
 searchForm.addEventListener("submit", (e) => {
   e.preventDefault();
+  currentPage = 1;
   const searchedValue = searchInput.value;
   if (searchedValue) {
     // Active Loading mode
@@ -112,24 +135,27 @@ searchForm.addEventListener("submit", (e) => {
 
 // Go To Next Page
 nextPageButton.addEventListener("click", () => {
+  nextPage = currentPage + 1;
   currentPage++;
-  if (currentPage <= totalPages) {
-    callPage(currentPage);
+  if (nextPage <= totalPages) {
+    callPage(nextPage);
   }
 });
 
 // Go To Previous Page
 prevPageBotton.addEventListener("click", () => {
-  currentPage--;
-  if (currentPage >= 1) {
-    callPage(currentPage);
+  if (currentPage > 1) {
+    prevPage = currentPage - 1;
+    currentPage--;
+  }
+  if (prevPage >= 1) {
+    callPage(prevPage);
   }
 });
 
 // UPdate The "page" Param In The API URL And Fetch New Results
 const callPage = (page) => {
   const splitedURL = lastURL.split("?");
-  console.log(splitedURL);
   const searchParams = new URLSearchParams(splitedURL[1]);
   searchParams.set("page", page);
   const url = splitedURL[0] + "?" + searchParams;
